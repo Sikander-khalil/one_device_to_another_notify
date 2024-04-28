@@ -3,9 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:flutter/material.dart';
+
 import 'package:message_me/screens/dashboard_screen.dart';
 import 'package:message_me/screens/login_screen.dart';
-
+import 'package:timezone/data/latest.dart' as tz;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -16,6 +17,7 @@ Future<void> main() async {
         projectId: 'pin-you-e886f',
         storageBucket: 'pin-you-e886f.appspot.com'),
   );
+  tz.initializeTimeZones();
   await FirebaseMessaging.instance.getInitialMessage();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
@@ -43,8 +45,8 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:
-          firebaseAuth.currentUser != null ? DashBoardScreen() : LoginScreen(),
+      home: firebaseAuth.currentUser != null ? DashBoardScreen() : LoginScreen(),
+
     );
   }
 }
