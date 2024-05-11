@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:message_me/screens/dashboard_screen.dart';
 import 'package:message_me/screens/login_screen.dart';
+import 'package:message_me/utils/flutter_back.dart';
 import 'package:timezone/data/latest.dart' as tz;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +21,7 @@ Future<void> main() async {
   tz.initializeTimeZones();
   await FirebaseMessaging.instance.getInitialMessage();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await initializeServices();
   runApp(const MyApp());
 }
 
