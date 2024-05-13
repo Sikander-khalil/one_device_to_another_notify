@@ -10,7 +10,7 @@ bool notificationShown = false; // Variable to track notification state
 Future<void> initializeServices() async {
   final service = FlutterBackgroundService();
   AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'script acedmy',
+    'Use of Background',
     "foreground",
     importance: Importance.high,
   );
@@ -28,7 +28,7 @@ Future<void> initializeServices() async {
         onStart: onStart,
         isForegroundMode: true,
         autoStart: true,
-        notificationChannelId: 'script acedmy',
+        notificationChannelId: 'Use of Background',
         initialNotificationTitle: 'foreground',
         initialNotificationContent: 'initalizing',
         foregroundServiceNotificationId: 888,
@@ -61,8 +61,8 @@ void onStart(ServiceInstance serviceInstance) async {
         // Check if the service is in foreground and notification hasn't been shown yet
         flutterLocalNotificationsPlugin.show(
             888,
-            "women safety App",
-            'women safety',
+            "Notification App",
+            'Background Services',
             NotificationDetails(
                 android: AndroidNotificationDetails(
                   'script acedmy',
